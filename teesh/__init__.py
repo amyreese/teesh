@@ -8,3 +8,12 @@ tee for python subprocess
 from .__version__ import __version__
 
 __author__ = "Amethyst Reese"
+
+
+from .core import CalledProcessError, CompletedProcess, run
+
+__all__ = [
+    "CalledProcessError",
+    "CompletedProcess",
+    "run",
+]

@@ -13,19 +13,17 @@ dynamic = ["version", "description"]
 requires-python = ">=3.12"
 dependencies = []
 
-[project.optional-dependencies]
+
+[dependency-groups]
 dev = [
     "attribution>=1.8",
-    "black==24.8.0",
-    "build>=1.2",
-    "flake8==7.1.1",
-    "mypy==1.11.2",
-    "ufmt==2.7.2",
-    "usort==1.0.8",
+    "black>=26",
+    "build>=1.5.0",
+    "ruff>=0.16.5",
+    "ty>=0.0.75",
+    "ufmt>=2.7.2",
+    "unittest-ft>=0.5",
 ]
-
-[project.scripts]
-teesh = "teesh.__main__:main"
 
 [project.urls]
 Home = "https://github.com/amyreese/teesh"
@@ -44,3 +42,6 @@ signed_tags = true
 
 [tool.mypy]
 strict = true
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]

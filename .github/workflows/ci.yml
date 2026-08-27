@@ -10,33 +10,24 @@ on:
 permissions:
   contents: read
 
-env:
-  UV_SYSTEM_PYTHON: 1
-
 jobs:
   test:
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.12", "3.13"]
+        python-version: ["3.12", "3.13", "3.14", "3.14t"]
         os: [macOS-latest, ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Set Up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          allow-prereleases: true
       - uses: astral-sh/setup-uv@v3
         with:
-          enable-cache: true
+          python-version: ${{ matrix.python-version }}
+          enable-cache: "auto"
           cache-dependency-glob: pyproject.toml
           cache-suffix: ${{ matrix.python-version }}
-      - name: Install
-        run: make EXTRAS=dev install
       - name: Test
         run: make test
       - name: Lint
@@ -47,17 +38,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
       - uses: astral-sh/setup-uv@v3
-        with:
-          enable-cache: true
-          cache-dependency-glob: pyproject.toml
-      - name: Install
-        run: make EXTRAS=dev install
       - name: Build
-        run: python -m build
+        run: uv run -m build
       - name: Upload
         uses: actions/upload-artifact@v3
         with:
