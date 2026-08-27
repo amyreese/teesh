@@ -62,4 +62,6 @@ CompletedProcess(cmd=('sudo', 'whoami'), returncode=0, stdout='root\n', stderr='
 License
 -------
 
+teesh is and always will be 100% human generated.
+
 teesh is copyright Amethyst Reese, and licensed under the MIT license.
