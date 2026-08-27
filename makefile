@@ -9,10 +9,10 @@ lint:
 	uv run ufmt check $(PKG)
 
 format:
-	python -m ufmt format $(PKG)
+	uv run ufmt format $(PKG)
 
 clean:
-	rm -rf .mypy_cache build dist html *.egg-info
+	rm -rf .ruff_cache build dist html *.egg-info
 
 distclean: clean
 	rm -rf .venv
